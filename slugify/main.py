@@ -217,7 +217,8 @@ class UniqueSlugify(Slugify):
         count = 0
         newtext = text
         separator = kwargs.get('separator', self.separator)
-        while not self.unique_check(newtext, self.uids):
+        properties = kwargs.get('properties', None)
+        while not self.unique_check(newtext, self.uids, properties):
             count += 1
             newtext = "%s%s%d" % (text, separator, count)
         self.uids.add(newtext)
